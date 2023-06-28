@@ -49,3 +49,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+      - name: Publish github pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/fazt-react.git
+          npm run gh-pages -- -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
